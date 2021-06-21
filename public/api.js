@@ -44,6 +44,13 @@ const API = {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
 
+    json.forEach((workout) => {
+      workout.totalDuration = 0;
+      workout.exercises.forEach((exercise) => {
+        workout.totalDuration += exercise.duration;
+      })
+    })
+
     return json;
   },
 };
