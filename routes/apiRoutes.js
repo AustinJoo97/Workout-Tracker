@@ -53,6 +53,9 @@ module.exports = function(app){
         }
     })
 
-    app.get('/api/workouts/range', (req, res) => {
+    app.get('/api/workouts/range', async (req, res) => {
+        const allWorkoutsData = await db.Workout.find({});
+        const lastSeven = allWorkoutsData.slice(-7);
+        res.json(lastSeven);
     })
 }
