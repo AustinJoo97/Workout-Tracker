@@ -22,13 +22,13 @@ const API = {
     }
 
     const json = await res.json();
-    // let totalDuration = 0;
-    // json[json.length-1].exercises.forEach(exercise => {
-    //     totalDuration+=exercise.duration
-    // })
-    // json[json.length-1].totalDuration = totalDuration
-    // return json[json.length - 1];
-    return json;
+    let totalDuration = 0;
+    json[json.length-1].exercises.forEach(exercise => {
+        totalDuration+=exercise.duration
+    })
+    json[json.length-1].totalDuration = totalDuration
+    return json[json.length - 1];
+    // return json;
   },
   async addExercise(data) {
     const id = location.search.split("=")[1];

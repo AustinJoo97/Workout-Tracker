@@ -4,12 +4,12 @@ module.exports = function(app){
     app.get('/api/workouts', async (req, res) => {
         try{
             const workoutData = await db.Workout.find({})
-            let lastWorkout = workoutData[workoutData.length-1];
-            let totalDuration = 0;
-            lastWorkout.forEach((exercise) => {
-                totalDuration += exercise.duration;
-            })
-            lastWorkout.totalDuration = totalDuration;
+            // let lastWorkout = workoutData[workoutData.length-1];
+            // let totalDuration = 0;
+            // lastWorkout.forEach((exercise) => {
+            //     totalDuration += exercise.duration;
+            // })
+            // lastWorkout.totalDuration = totalDuration;
             res.send(workoutData);
         } catch(err) {
             res.json(err);
