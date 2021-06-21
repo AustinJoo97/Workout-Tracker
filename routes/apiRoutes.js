@@ -11,6 +11,14 @@ module.exports = function(app){
             // })
             // lastWorkout[totalDuration] = totalDuration;
             res.send(lastWorkout);
+
+            // workoutData.forEach((workout) => {
+            //     let totalDuration = 0;
+            //     workout.exercises.forEach((exercise) => {
+            //         totalDuration += exercise.duration
+            //     })
+            //     workout.totalDuration = totalDuration
+            // })
         } catch(err){
             console.log(err)
         }

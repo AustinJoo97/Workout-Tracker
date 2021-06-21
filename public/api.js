@@ -8,6 +8,8 @@ const API = {
         totalDuration += exercise.duration
       })
       json.totalDuration = totalDuration;
+      // console.log(json);
+      // return json[json.length-1];
       return json;
     } catch (err) {
       console.log(err)
