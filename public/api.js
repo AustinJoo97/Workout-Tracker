@@ -12,7 +12,6 @@ const API = {
     } catch (err) {
       console.log(err)
     }
-
   },
   async addExercise(data) {
     const id = location.search.split("=")[1];
