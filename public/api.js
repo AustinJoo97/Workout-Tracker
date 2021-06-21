@@ -1,19 +1,18 @@
 const API = {
   async getLastWorkout() {
-    let res;
     try {
-      res = await fetch("/api/workouts");
+      const res = await fetch("/api/workouts");
+      const json = await res.json();
+      let totalDuration = 0
+      json.exercises.forEach((exercise) => {
+        totalDuration += exercise.duration
+      })
+      json.totalDuration = totalDuration;
+      return json;
     } catch (err) {
       console.log(err)
     }
 
-    const json = await res.json();
-    let totalDuration = 0
-    json.exercises.forEach((exercise) => {
-      totalDuration += exercise.duration
-    })
-    json.totalDuration = totalDuration;
-    return json;
   },
   async addExercise(data) {
     const id = location.search.split("=")[1];
