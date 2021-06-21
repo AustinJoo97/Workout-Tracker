@@ -4,21 +4,16 @@ module.exports = function(app){
     app.get('/api/workouts', async (req, res) => {
         try {
             const workoutData = await db.Workout.find({});
-            const lastWorkout = workoutData[workoutData.length-1];
-            // let totalDuration = 0;
-            // lastWorkout.exercises.forEach((exercise) => {
-            //     totalDuration += exercise.duration
-            // })
-            // lastWorkout[totalDuration] = totalDuration;
-            res.send(lastWorkout);
-
+            
             // workoutData.forEach((workout) => {
-            //     let totalDuration = 0;
-            //     workout.exercises.forEach((exercise) => {
-            //         totalDuration += exercise.duration
-            //     })
-            //     workout.totalDuration = totalDuration
-            // })
+                //     workout.totalDuration = 0;
+                //     workout.exercises.forEach((exercise) => {
+                //         workout.totalDuration += exercise.duration
+                //     })
+                // })
+                
+            const lastWorkout = workoutData[workoutData.length-1];
+            res.send(lastWorkout);
         } catch(err){
             console.log(err)
         }
