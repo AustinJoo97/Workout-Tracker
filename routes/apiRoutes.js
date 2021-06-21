@@ -15,13 +15,15 @@ const db = require("../models");
 // };
 
 module.exports = function(app){
-    app.get('/api/workouts', async (req, res) => {
-        try{
-            const workoutData = await db.Workout.find({})
+    app.get('/api/workouts', (req, res) => {
+        db.Workout.find({})
+        .then((workoutData) => {
+            console.log(workoutData);
             res.send(workoutData);
-        } catch(err) {
-            res.json(err);
-        }
+        })
+        .catch((err) => {
+        res.json(err);
+        })
     });
 
     app.put('/api/workouts/:id', (req, res) => {
@@ -46,29 +48,31 @@ module.exports = function(app){
         })
     });
 
-    app.post('/api/workouts', async (req, res) => {
-        try{
-            const newWorkout = new db.Workout(req.body);
-    
-            const createdWorkout = await db.Workout.create(newWorkout)
+    app.post('/api/workouts', (req, res) => {
+        const newWorkout = new db.Workout(req.body);
+
+        db.Workout.create(newWorkout)
+        .then((createdWorkout) => {
             res.json(createdWorkout);
-        } catch(err) {
+        })
+        .catch((err) => {
             res.json(err);
-        }
+        })
     })
 
-    app.get('/api/workouts/range', async (req, res) => {
-        try{
-            const workoutData = await db.Workout.find({}).aggregate([
+    app.get('/api/workouts/range', (req, res) => {
+        db.Workout.find({}).aggregate([
                 {
                     $addFields: {
                         totalDuration: { $sum : "$duration"}
                     }
                 }
-            ])
+        ])
+        .then((workoutData) => {
             res.send(workoutData);
-        } catch(err) {
+        })
+        .catch((err) => {
             res.json(err);
-        }
+        })
     })
 }
