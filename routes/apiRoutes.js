@@ -56,6 +56,14 @@ module.exports = function(app){
     app.get('/api/workouts/range', async (req, res) => {
         const allWorkoutsData = await db.Workout.find({});
         const lastSeven = allWorkoutsData.slice(-7);
+
+        // lastSeven.forEach((workout) => {
+        //     workout.totalDuration = 0;
+        //     workout.exercises.forEach((exercise) => {
+        //         workout.totalDuration += exercise.duration;
+        //     })
+        // })
+
         res.json(lastSeven);
     })
 }
