@@ -1,20 +1,19 @@
 const db = require("../models");
 
 module.exports = function(app){
-    app.get('/api/workouts', (req, res) => {
-        db.Workout.find({})
-        .then((workoutData) => {
-            let lastWorkout = workoutData[workoutData.length-1];
+    app.get('/api/workouts', async (req, res) => {
+        try {
+            const workoutData = await db.Workout.find({});
+            const lastWorkout = workoutData[workoutData.length-1];
             // let totalDuration = 0;
             // lastWorkout.exercises.forEach((exercise) => {
             //     totalDuration += exercise.duration
             // })
             // lastWorkout[totalDuration] = totalDuration;
             res.send(lastWorkout);
-        })
-        .catch((err) => {
+        } catch(err){
             console.log(err)
-        })
+        }
     });
 
     app.put('/api/workouts/:id', async (req, res) => {
@@ -35,17 +34,15 @@ module.exports = function(app){
         }
     });
 
-    app.post('/api/workouts', (req, res) => {
-        const newWorkout = new db.Workout(req.body);
-
-        db.Workout.create(newWorkout)
-        .then((createdWorkout) => {
-            console.log(createdWorkout);
+    app.post('/api/workouts', async (req, res) => {
+        try{
+            const newWorkout = new db.Workout(req.body);
+    
+            const createdWorkout = await db.Workout.create(newWorkout)
             res.json(createdWorkout);
-        })
-        .catch((err) => {
+        } catch(err) {
             res.json(err);
-        })
+        }
     })
 
     app.get('/api/workouts/range', (req, res) => {
