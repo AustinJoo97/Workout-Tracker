@@ -18,43 +18,21 @@ module.exports = function(app){
     });
 
     app.put('/api/workouts/:id', async (req, res) => {
+        // Worked with Sam on this route
         try {
-            const _id = req.params.id
-            const workOutData = req.body
-            const updated = await db.Workout.updateOne(
-                {_id},
+            const updatedWorkout = await db.Workout.updateOne({_id: req.params.id},
                 {
                     $push: {
-                        exercises: workOutData
+                        exercises: req.body
                     }
                 }
             )
-            return res.json(updated)
+            return res.json(updatedWorkout)
         }
         catch (err) {
             console.log(err.message)
             res.status(500).json({error:"server_error"})
         }
-        // db.Workout.findOne({_id: req.params.id})
-        // .then((workoutData) => {
-        //     console.log(workoutData)
-        //     workoutData.excercises.push({
-        //         type: req.body.type,
-        //         name: req.body.name,
-        //         duraton: req.body.duration,
-        //         weight: req.body.weight,
-        //         reps: req.body.reps,
-        //         sets: req.body.sets,
-        //         distance: req.body.distance
-        //     })
-        //     db.Workout.updateOne({_id: req.params.id}, {exercises: workoutData.exercises})
-        //     .then((updatedWorkout) => {
-        //         res.json(updatedWorkout);
-        //     })
-        // })
-        // .catch((err) => {
-        //     res.json(err);
-        // })
     });
 
     app.post('/api/workouts', (req, res) => {
