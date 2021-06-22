@@ -53,13 +53,6 @@ module.exports = function(app){
         }])
         const lastSeven = allWorkoutsData.slice(-7);
 
-        // lastSeven.forEach((workout) => {
-        //     workout.totalDuration = 0;
-        //     workout.exercises.forEach((exercise) => {
-        //         workout.totalDuration += exercise.duration;
-        //     })
-        // })
-
         res.json(lastSeven);
     })
 }
