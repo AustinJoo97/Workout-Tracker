@@ -3,13 +3,6 @@ const API = {
     try {
       const res = await fetch("/api/workouts");
       const json = await res.json();
-      let totalDuration = 0
-      json.exercises.forEach((exercise) => {
-        totalDuration += exercise.duration
-      })
-      json.totalDuration = totalDuration;
-      // console.log(json);
-      // return json[json.length-1];
       return json;
     } catch (err) {
       console.log(err)

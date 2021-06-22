@@ -3,19 +3,16 @@ const db = require("../models");
 module.exports = function(app){
     app.get('/api/workouts', async (req, res) => {
         try {
-            const workoutData = await db.Workout.find({});
-            
-            // workoutData.forEach((workout) => {
-                //     workout.totalDuration = 0;
-                //     workout.exercises.forEach((exercise) => {
-                //         workout.totalDuration += exercise.duration
-                //     })
-                // })
-                
+            const workoutData = await db.Workout.aggregate([{
+                $addFields: {
+                    totalDuration: { $sum : "$exercises.duration"}
+                } 
+            }])
+
             const lastWorkout = workoutData[workoutData.length-1];
             res.send(lastWorkout);
         } catch(err){
-            console.log(err)
+            res.json(err)
         }
     });
 
