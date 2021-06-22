@@ -46,7 +46,11 @@ module.exports = function(app){
     })
 
     app.get('/api/workouts/range', async (req, res) => {
-        const allWorkoutsData = await db.Workout.find({});
+        const allWorkoutsData = await db.Workout.aggregate([{
+            $addFields: {
+                totalDuration: { $sum : "$exercises.duration"}
+            } 
+        }])
         const lastSeven = allWorkoutsData.slice(-7);
 
         // lastSeven.forEach((workout) => {
