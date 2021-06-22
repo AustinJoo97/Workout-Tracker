@@ -7,7 +7,6 @@ Application that allows users to log their workout information; specifically nam
 ## Table of Contents
 
 - [Description, Setup, and Installation](#description-setup-and-installation)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Full License Information](#license-information)
 - [Conrtibutors](#contributors)
@@ -16,9 +15,9 @@ Application that allows users to log their workout information; specifically nam
 
 
 ## Description, Setup, and Installation
+This application exists as a way for users to have a very minimal way of tracking their recent workout regimens. MongoDB was utilized in conjunction with mongoose to store, update, and edit data pertaining to said workouts to allow users to see statistics about their most recent workout routines. There exist stats including duration, weight, type, and others with multiple fields being aggregated at the server to return useful information for users who would benefit from this application.
 
-
-## Usage
+As for the setup and installation on a local machine, the command "npm i" can be used to install all the necessary components and (assuming mongo is already running), the server can be spun up using "npm start" to begin using the application.
 
 
 ## Technologies Used
