@@ -2,7 +2,7 @@
 Application that allows users to log their workout information; specifically name, type, weight, sets, reps, duration, and distance traveled.
 
 ## Deployed Site Link 
-
+https://austins-workout-tracker.herokuapp.com/?id=60d3771b948c5c0015a6db2c
 
 ## Table of Contents
 
